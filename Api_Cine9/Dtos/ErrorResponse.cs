@@ -1,6 +1,6 @@
 namespace Api_Cine9.Dtos;
 
-// FORMATO UNICO PARA LAS RESPUESTAS DE ERROR ( DTO DE SALIDA)
+// PARA MAPEAR LO QUE QUIERES QUE TENGA LAS RESPUESTAS DE ERROR ( DTO DE SALIDA)
 public class ErrorResponse
 {
     public int Estado { get; set; }
