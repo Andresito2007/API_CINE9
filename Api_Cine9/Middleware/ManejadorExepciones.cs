@@ -28,22 +28,22 @@ public class ManejadorExcepciones : IExceptionHandler
         {
             case NoEncontradoException:
                 estado = StatusCodes.Status404NotFound;
-                error = "No encontrado estimado apicinito";
+                error = "NO ENCONTRADO ESTIMADO APICINITO";
                 break;
             case ReglaNegocioException:
                 estado = StatusCodes.Status400BadRequest;
-                error = "Solicitud inválida estimado apicinito";
+                error = "SOLICITID INVALIDA ESTIMADO APICINITO";
                 break;
             case ConflictoException:
                 estado = StatusCodes.Status409Conflict;
-                error = "Conflicto encontrado estimado apicinito";
+                error = "CONFLICTO ENCONTRADO ESTIMADO APICINITO";
                 break;
             default:
-                // POR SI HAY UN BUG , LO GUARDAMOS EN EL LOG PA NOSOTROS
-                _logger.LogError(exception, "Error no controlado apicinito");
+                // POR SI HAY UN BUG DEL MISMO SERVIDOR , LO GUARDAMOS EN EL LOG PA NOSOTROS
+                _logger.LogError(exception, "OCURRIO UN BUG ESTIMADO APICINITO");
                 estado = StatusCodes.Status500InternalServerError;
-                error = "Error interno";
-                mensaje = "Ocurrió un error inesperado. Intente más tarde.";
+                error = "ERROR INTERNO";
+                mensaje = "OCURRIO UN ERROR INSEPERADO APICNITO , INTENTALO MAS TARDE";
                 break;
         }
 
@@ -58,7 +58,6 @@ public class ManejadorExcepciones : IExceptionHandler
         // LE PONEMOS EL CODIGO HTTP Y LA MANDAMOS COMO JSON
         context.Response.StatusCode = estado;
         await context.Response.WriteAsJsonAsync(respuesta, cancellationToken);
-
         return true;
     }
 }
