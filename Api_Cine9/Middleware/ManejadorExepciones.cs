@@ -8,9 +8,10 @@ namespace Api_Cine9.Middleware;
 // IMPLEMENTAMOS LA INTERFAZ IEXCEPTIONHANDLER
 public class ManejadorExcepciones : IExceptionHandler
 {
-    private ILogger<ManejadorExcepciones> _logger; // PA ESCRIBIR LOS ERRORES EN  LA CONSOLA
-
-    // INYECCION DE DEPENDENCIAS , ASP.NET NOS ENTREGA EL LOGGER SOLITO
+    // ILOGGER PA ESCRIBIR MENSAJES EN CONSOLA Y SE INYECTA SOLO
+    private ILogger<ManejadorExcepciones> _logger; 
+    
+    // INYECCION DE DEPENDENCIAS 
     public ManejadorExcepciones(ILogger<ManejadorExcepciones> logger)
     {
         _logger = logger;
