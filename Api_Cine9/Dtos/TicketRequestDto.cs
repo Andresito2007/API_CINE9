@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Api_Cine9.Dtos;
 
-// DTO (DATA TRANSFER OBJECT) PARA VALIDAR LOS DATOS
+// DTO (DATA TRANSFER OBJECT) PARA VALIDAR LOS DATOS ANTES DE QUE LLEGUE AL CONTROLADOR
 
 public class TicketRequestDto
 {
