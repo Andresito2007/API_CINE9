@@ -21,7 +21,7 @@ public class TicketsController : ControllerBase
         _service = service;
     }
 
-    //ActionResult para devolver datos de tipo Ticket o  lista de tickect
+    // ACCTIONRESULT ES LA REPRESENTACION DE LA RESPUES HTTP DE NUESTRO METODO
     [HttpGet]
     public ActionResult<List<Ticket>> ObtenerTodos()
     {
@@ -39,8 +39,8 @@ public class TicketsController : ControllerBase
     public ActionResult<Ticket> Crear(TicketRequestDto dto)
     {
         Ticket creado = _service.Crear(dto);
-        // devuelve el ticket creado y su ruta
-        return CreatedAtAction("ObtenerPorId", new { id = creado.Id }, creado); // createdataction=201
+        // RETORNAMOS NUESTRO METODO PARA POST ( 201 INDICANDO QUE SE CREO UN RECURSO)
+        return CreatedAtAction("ObtenerPorId", new { id = creado.Id }, creado); 
     }
 
     [HttpPut("{id}")]
@@ -54,7 +54,7 @@ public class TicketsController : ControllerBase
     {
         _service.Eliminar(id);
 
-        //retorna un 204 , se completo la soliti pero no hay nd que devolver
+        // METODO QUE RETORNA UN 204 , SALIO BIEN PERO NO RETORNA NADA
         return NoContent();
     }
 }
