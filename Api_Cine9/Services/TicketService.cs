@@ -8,10 +8,10 @@ namespace Api_Cine9.Services;
 
 // NUESTRA LOGICA DE NEGOCIO
 
-// IMPLEMENTAMOS ITICKETSERVICE
+// IMPLEMENTAMOS ITICKETSERVICE ( DEBE USAR LOS METODO OBLIGAT DEFINIDOS)
 public class TicketService : ITicketService
 {
-    // SACAMOS DATOS DEL REPOSITORIO (INYECCION DE DEPENDENCIAS)
+    // (INYECCION DE DEPENDENCIAS)
     private ITicketRepository _ticketRepository;
 
     public TicketService(ITicketRepository ticketRepository)
@@ -37,8 +37,7 @@ public class TicketService : ITicketService
         ValidarDatos(dto, idActual: 0);
 
         List<Ticket> tickets = _ticketRepository.ObtenerTodos();
-
-        // EL ID ES EL MAYOR QUE HAY + 1 (O 1 SI LA LISTA ESTA VACIA)
+        
         Ticket nuevo = new Ticket{
             // count cuenta cuantos tickes hay en la lista , si es 0 le ponemos 1 , si no le ponemos el  ticket maximo id + 1
             Id = tickets.Count == 0 ? 1 : tickets.Max(t => t.Id) + 1,Estado = "Activo"
