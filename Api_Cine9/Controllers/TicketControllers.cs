@@ -1,7 +1,7 @@
 using Api_Cine9.Dtos;
 using Api_Cine9.Models;
 using Api_Cine9.Services;
-// USAMOS PARA USAR LOS METODOS DE ASPNETCORE PARA NUESTRO CONTROLADOR
+// (Controllerbase) USAMOS PARA USAR LOS METODOS DE ASPNETCORE PARA NUESTRO CONTROLADOR
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api_Cine9.Controllers;
