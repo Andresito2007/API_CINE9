@@ -1,30 +1,27 @@
 using Api_Cine9.Dtos;
 using Api_Cine9.Exceptions;
-using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Diagnostics; // namespace de manejo de errores ( IexceptionHanler)
 
 namespace Api_Cine9.Middleware;
 
-// NUESTRO GUARDIAN , TODA EXCEPCION QUE SE LANCE EN EL SERVICIO LLEGA AQUI PARA NO PONER TRY/CATCH EN CADA METODO
+// NUESTRO GUARDIAN , TODA EXCEPCION QUE SE LANCE LLEGA AQUI
 
-// IMPLEMENTAMOS LA INTERFAZ IEXCEPTIONHANDLER
 public class ManejadorExcepciones : IExceptionHandler
 {
     // ILOGGER PA ESCRIBIR MENSAJES EN CONSOLA Y SE INYECTA SOLO
     private ILogger<ManejadorExcepciones> _logger; 
     
-    // INYECCION DE DEPENDENCIAS 
     public ManejadorExcepciones(ILogger<ManejadorExcepciones> logger)
     {
         _logger = logger;
     }
-    // ASYNC PARA REALIZAR OPERACIONES ASINCRONAZ , OSEA PODEMOS ESPERAR OPERACIONES ASINCRONAS SIN DETENER EL HILO PRINCIPAL
+    // ASYNC PARA REALIZAR OPERACIONES ASINCRONAZ , ASI PUEDEN ATENDER OTRAS PETIS SIN AFECTAR EL HILO
     public async ValueTask<bool> TryHandleAsync(HttpContext context, Exception exception, CancellationToken cancellationToken)
     {
         int estado;
         string error;
         string mensaje = exception.Message;
 
-        // SEGUN EL TIPO DE EXCEPCION LE ASIGNAMOS EL TIPO DE ESTADO
         switch (exception)
         {
             case NoEncontradoException:
@@ -43,7 +40,7 @@ public class ManejadorExcepciones : IExceptionHandler
                 // POR SI HAY UN ERROR QUE NO ESPERABAMOS , LO GUARDAMOS EN EL LOG PA VERLO EN EL VISUAL
                 _logger.LogError(exception, "OCURRIO UN BUG ESTIMADO APICINITO");
                 estado = StatusCodes.Status500InternalServerError;
-                error = "ERROR INTERNO";
+                error = "ERROR INTERNO DE API CINE";
                 mensaje = "OCURRIO UN ERROR INSEPERADO APICNITO , INTENTALO MAS TARDE";
                 break;
         }
