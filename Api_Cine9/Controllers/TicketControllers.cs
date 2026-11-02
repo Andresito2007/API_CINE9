@@ -12,9 +12,8 @@ namespace Api_Cine9.Controllers;
 // HEREDARA LOS METODOS DEL CONTROLBASE
 public class TicketsController : ControllerBase
 {
-    private ITicketService _service; // SOLO CONOCE EL INTERFAZ NO LA CLASE PA QUE SEA MAS FACIL CAMBIARLA SI QUEREMOS
+    private ITicketService _service; 
     
-    // INYECCION DE DEPENDENCIAS
     public TicketsController(ITicketService service)
     {
         _service = service;
