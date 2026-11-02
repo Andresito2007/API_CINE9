@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api_Cine9.Controllers;
 
-// CONTROLADOR  , EL QUE VA A RECIBIR LAS PETICIONES HTTP Y LLAMAR AL SERVICIO
 [ApiController]
 [Route("api/tickets")]
 
@@ -14,8 +13,8 @@ namespace Api_Cine9.Controllers;
 public class TicketsController : ControllerBase
 {
     private ITicketService _service; // SOLO CONOCE EL INTERFAZ NO LA CLASE PA QUE SEA MAS FACIL CAMBIARLA SI QUEREMOS
-
-    // INYECCION DE DEPENDENCIAS , PARA PODER USAR NUESTRO SERVICIO SIN INSTANCIAR LA CLASE YA NOS LO DA EL BUILDER EN PROGRAM.CS
+    
+    // INYECCION DE DEPENDENCIAS
     public TicketsController(ITicketService service)
     {
         _service = service;
@@ -54,7 +53,7 @@ public class TicketsController : ControllerBase
     {
         _service.Eliminar(id);
 
-        // METODO QUE RETORNA UN 204 , SALIO BIEN PERO NO RETORNA NADA
+        // RETORNA 204 , SALIO BIEN PERO NO RETORNA NADA
         return NoContent();
     }
 }
