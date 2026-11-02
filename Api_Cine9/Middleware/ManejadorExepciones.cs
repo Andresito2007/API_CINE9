@@ -25,7 +25,7 @@ public class ManejadorExcepciones : IExceptionHandler
         switch (exception)
         {
             case NoEncontradoException:
-                estado = StatusCodes.Status404NotFound; // status code la clase que tiene los estados http
+                estado = StatusCodes.Status404NotFound;
                 error = "NO ENCONTRADO ESTIMADO APICINITO";
                 break;
             case ReglaNegocioException:
@@ -45,7 +45,6 @@ public class ManejadorExcepciones : IExceptionHandler
                 break;
         }
 
-        // ARMAMOS LA RESPUESTA CON NUESTRO DTO DE SALIDA
         ErrorResponse respuesta = new ErrorResponse
         {
             Estado = estado,
@@ -53,7 +52,7 @@ public class ManejadorExcepciones : IExceptionHandler
             Mensaje = mensaje,
             Ruta = context.Request.Path // SOLO LA PETICION CON PATH
         };
-        // LE ASGINAMOS A LA VARIABLE ESTADO  Y LA MANDAMOS COMO JSON
+        // LE ASGINAMOS A LA VARIABLE ESTADO
         context.Response.StatusCode = estado;
         // esperamos la operacion con await
         await context.Response.WriteAsJsonAsync(respuesta, cancellationToken);
