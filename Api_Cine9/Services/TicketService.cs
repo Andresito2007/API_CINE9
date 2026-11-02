@@ -7,8 +7,6 @@ using Api_Cine9.Repository;
 namespace Api_Cine9.Services;
 
 // NUESTRA LOGICA DE NEGOCIO
-
-// IMPLEMENTAMOS ITICKETSERVICE ( DEBE USAR LOS METODO OBLIGAT DEFINIDOS)
 public class TicketService : ITicketService
 {
     // (INYECCION DE DEPENDENCIAS)
@@ -64,7 +62,6 @@ public class TicketService : ITicketService
         Ticket ticket = ObtenerPorId(id);
         _ticketRepository.Eliminar(ticket);
     }
-    // PRIVATE PORQUE SOLO SE USA DENTRO DE ESTA CLASE
     private void ValidarDatos(TicketRequestDto dto, int idActual)
     {
         // ANY DEVUELVE TRUE SI SE CUMPLE LA CONDICION
