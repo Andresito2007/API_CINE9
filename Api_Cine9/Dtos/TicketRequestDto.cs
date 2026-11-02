@@ -3,8 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Api_Cine9.Dtos;
 
-// DTO (DATA TRANSFER OBJECT) PARA VALIDAR LOS DATOS ANTES DE QUE LLEGUE AL CONTROLADOR
-
 public class TicketRequestDto
 {
     //EL ID DEBE ESTAR DESDE EL 1 HASTA EL MAXIMO POSTIVO SINO MUESTRA EL ERROR
@@ -14,13 +12,12 @@ public class TicketRequestDto
     [Range(1, int.MaxValue, ErrorMessage = "EL ID DE LA PELÍCULA ES OBLIGATORIO Y DEBE SER MAYOR A 0")]
     public int PeliculaId { get; set; }
 
-    // REQUIRED PARA QUE EL CAMPO SEA OBLIGATORIO
+    // REQUIRED CAMPO OBLIGATORIO
     [Required(ErrorMessage = "LA FECHA DE LA FUNCIÓN ES OBLIGATORIA")]
     public DateTime? FechaFuncion { get; set; }  // FORAZMOS EL ? PA QUE REQUIRED SE ACTIVE
 
     [Required(ErrorMessage = "LA SALA ES OBLIGATORIA")]
-
-    // STRINGLENGTH PARA QUE EL CAMPO TENGA UN MAXIMO Y MINIMO DE CARACTERES
+    
     [StringLength(20, MinimumLength = 3, ErrorMessage = "LA SALA DEBE TENER ENTRE 3 Y 20 CARACTERES")]
     public string Sala { get; set; } = "";
 
@@ -28,8 +25,7 @@ public class TicketRequestDto
     [Required(ErrorMessage = "EL ASIENTO ES OBLIGATORIO.")]
     [RegularExpression("^[A-La-l]([1-9]|1[0-9]|20)$", ErrorMessage = "EL ASIENTO DEBE TENER UNA FILA (A-L) Y UN NÚMERO (1-20). EJEMPLO: F7.")]
     public string Asiento { get; set; } = "";
-
-    // RANGO DEL PRECIO
+    
     [Range(5, 50, ErrorMessage = "EL PRECIO DEBE ESTAR ENTRE 5 Y 50 SOLES.")]
     public decimal Precio { get; set; }
 }
