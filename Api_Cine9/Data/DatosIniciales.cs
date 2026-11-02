@@ -2,11 +2,8 @@ using Api_Cine9.Models;
 
 namespace Api_Cine9.Data;
 
-// PERSISTENCIA LOCAL ( EN LISTAS )
 public static class DatosIniciales
 {
-    // INICIALIZAMOS VARIOS EN LISTAS LOS OBJETOS DE LAS CLASES CLIENTES , PELICULAS Y TICKETS
-
     //STATIC PARA USARLO DESDE OTRAS PARTES SIN INSTANCIAR LA CLASE DE NUEVO , VA SER UN CONTENEDOR
     public static List<Cliente> Clientes =
     [
