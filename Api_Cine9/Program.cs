@@ -2,7 +2,6 @@ using Api_Cine9.Middleware;
 using Api_Cine9.Repository;
 using Api_Cine9.Services;
 
-// CREAMOS NUESTRO APP
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -26,5 +25,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-// LEVANTAMO SERVIDOR
 app.Run();
