@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-// REGISTRAMOS EL REPOSITORIO , CUANDO ALGUIEN PIDA ITICKETREPOSITORY LE DAMOS TICKETREPOSITORY (INYECCION DE DEPENDENCIAS)
+
 builder.Services.AddSingleton<ITicketRepository, TicketRepository>();
 
 builder.Services.AddSingleton<ITicketService, TicketService>();
