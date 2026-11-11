@@ -1,7 +1,6 @@
 using Api_Cine9.Dtos;
 using Api_Cine9.Models;
 using Api_Cine9.Services;
-// (Controllerbase) USAMOS PARA USAR LOS METODOS DE ASPNETCORE PARA NUESTRO CONTROLADOR
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api_Cine9.Controllers;
@@ -18,12 +17,11 @@ public class TicketsController : ControllerBase
     {
         _service = service;
     }
-
-    // ACCTIONRESULT ES LA REPRESENTACION DE LA RESPUES HTTP DE NUESTRO METODO
+    
     [HttpGet]
     public ActionResult<List<Ticket>> ObtenerTodos()
     {
-        return Ok(_service.ObtenerTodos()); // ok=200
+        return Ok(_service.ObtenerTodos());
     }
 
     [HttpGet("{id}")]
@@ -37,7 +35,6 @@ public class TicketsController : ControllerBase
     public ActionResult<Ticket> Crear(TicketRequestDto dto)
     {
         Ticket creado = _service.Crear(dto);
-        // RETORNAMOS NUESTRO METODO PARA POST ( 201 INDICANDO QUE SE CREO UN RECURSO)
         return CreatedAtAction("ObtenerPorId", new { id = creado.Id }, creado); 
     }
 
@@ -52,7 +49,6 @@ public class TicketsController : ControllerBase
     {
         _service.Eliminar(id);
 
-        // RETORNA 204 , SALIO BIEN PERO NO RETORNA NADA
         return NoContent();
     }
 }
