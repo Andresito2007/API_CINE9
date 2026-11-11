@@ -6,7 +6,6 @@ using Api_Cine9.Repository;
 
 namespace Api_Cine9.Services;
 
-// NUESTRA LOGICA DE NEGOCIO
 public class TicketService : ITicketService
 {
     // (INYECCION DE DEPENDENCIAS)
@@ -64,7 +63,6 @@ public class TicketService : ITicketService
     }
     private void ValidarDatos(TicketRequestDto dto, int idActual)
     {
-        // ANY DEVUELVE TRUE SI SE CUMPLE LA CONDICION
         if (!DatosIniciales.Clientes.Any(c => c.Id == dto.ClienteId))
         {
             throw new ReglaNegocioException($"NO EXISTE EL CLIENTE CON ID {dto.ClienteId}");
@@ -75,7 +73,6 @@ public class TicketService : ITicketService
             throw new ReglaNegocioException($"NO EXISTE LA PELICULA CON ID   {dto.PeliculaId}");
         }
         // EL ASIENTO ESTA OCUPADO SI YA HAY UN TICKET ACTIVO CON LA MISMA PELICULA , FECHA , SALA Y ASIENTO
-        // ORDINALIGNORECASE PA QUE "f7" Y "F7" SEAN IGUALES
         bool asientoOcupado = _ticketRepository.ObtenerTodos().Any(t =>
             t.Id != idActual &&
             t.Estado == "Activo" &&
@@ -89,14 +86,13 @@ public class TicketService : ITicketService
             throw new ConflictoException($"EL ASIENTO {dto.Asiento.ToUpper()} YA ESTA VENDIDO PARA OTRA FUNCION.");
         }
     }
-    // LE LLEVA LOS DATOS DEL DTO AL NEW TICKET
     private static void CopiarDatos(TicketRequestDto dto, Ticket ticket)
     {
         ticket.ClienteId = dto.ClienteId;
         ticket.PeliculaId = dto.PeliculaId;
         ticket.FechaFuncion = dto.FechaFuncion!.Value;
         ticket.Sala = dto.Sala;
-        ticket.Asiento = dto.Asiento.ToUpper(); // PASARL EN MAYUSCULA
+        ticket.Asiento = dto.Asiento.ToUpper(); 
         ticket.Precio = dto.Precio;
     }
 }
